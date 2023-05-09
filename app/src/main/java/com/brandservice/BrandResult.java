@@ -18,8 +18,6 @@ public class BrandResult implements Parcelable {
 
     private Integer totalCostTime;
 
-    private Map<Object, Object> params;
-
     private String remark;
 
     private String createTime;
@@ -93,14 +91,6 @@ public class BrandResult implements Parcelable {
         this.totalCostTime = totalCostTime;
     }
 
-    public Map<Object, Object> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<Object, Object> params) {
-        this.params = params;
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -135,6 +125,7 @@ public class BrandResult implements Parcelable {
         }
         parcel.writeString(remark);
         parcel.writeString(createTime);
+
     }
 
     @Override
@@ -144,7 +135,6 @@ public class BrandResult implements Parcelable {
                 ", detectorResult=" + detectorResult +
                 ", searchResult=" + searchResult +
                 ", totalCostTime=" + totalCostTime +
-                ", params=" + params +
                 ", remark='" + remark + '\'' +
                 ", createTime='" + createTime + '\'' +
                 '}';

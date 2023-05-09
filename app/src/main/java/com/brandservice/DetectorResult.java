@@ -21,8 +21,6 @@ public class DetectorResult implements Parcelable {
 
     private List<DetectionTarget> targets = new ArrayList<>();
 
-    private Map<Object, Object> params;
-
     private String remark;
     public DetectorResult(){}
 
@@ -104,14 +102,6 @@ public class DetectorResult implements Parcelable {
         this.costTime = costTime;
     }
 
-    public Map<Object, Object> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<Object, Object> params) {
-        this.params = params;
-    }
-
     public String getRemark() {
         return remark;
     }
@@ -137,7 +127,6 @@ public class DetectorResult implements Parcelable {
                 ", costTime=" + costTime +
                 ", createTime='" + createTime + '\'' +
                 ", targets=" + targets +
-                ", params=" + params +
                 ", remark='" + remark + '\'' +
                 '}';
     }

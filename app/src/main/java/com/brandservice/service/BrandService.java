@@ -37,16 +37,6 @@ public class BrandService extends Service {
     private IBinder iBinder = new IBrandServiceAIDL.Stub() {
 
         @Override
-        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
-
-        }
-
-        @Override
-        public int sendImageAndGetResult(ParcelFileDescriptor pfd) throws RemoteException {
-            return 0;
-        }
-
-        @Override
         public BrandResult getBrandResult(ParcelFileDescriptor pfd) throws RemoteException {
             Log.d(TAG, "[sendImageAndGetResult]");
             Long start = System.currentTimeMillis();
@@ -74,12 +64,6 @@ public class BrandService extends Service {
             brandResult.setSearchResult(searchResult);
             /** search **/
 
-            /** extends **/
-            // TODO
-            Map<Object, Object> params = new HashMap<>();
-            params.put("extend", 1001);
-            brandResult.setParams(params);
-            /** extends **/
 
             Long end = System.currentTimeMillis();
             brandResult.setTotalCostTime((int) (end-start));

@@ -18,8 +18,6 @@ public class DetectionTarget  implements Parcelable {
 
     private Bitmap image;
 
-    private Map<Object, Object> params;
-
     public DetectionTarget(){}
 
     protected DetectionTarget(Parcel in) {
@@ -77,14 +75,6 @@ public class DetectionTarget  implements Parcelable {
         this.image = image;
     }
 
-    public Map<Object, Object> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<Object, Object> params) {
-        this.params = params;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -110,7 +100,6 @@ public class DetectionTarget  implements Parcelable {
                 ", brandName='" + brandName + '\'' +
                 ", brandId='" + brandId + '\'' +
                 ", image=" + image +
-                ", params=" + params +
                 '}';
     }
 }

@@ -37,7 +37,7 @@ import mmdeploy.Rect;
 
 public class DetectorUtil {
     private static final String TAG = "DetectorUtil";
-    private static final String [] modelTypes = {"yoloxs", "yoloxl","yolo"};
+    private static final String [] modelTypes = {"first", "second","third"};
     private String deviceName;
 
     private int currentModel;

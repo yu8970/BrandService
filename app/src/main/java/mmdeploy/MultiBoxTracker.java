@@ -105,7 +105,6 @@ public class MultiBoxTracker {
   }
 
   public synchronized void trackResults(final List<Detector.Result> results) {
-
     processResults(results);
   }
 

@@ -5,16 +5,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import java.util.Date;
-import java.util.Map;
-
 public class BrandResult implements Parcelable {
 
     private Long traceId;
 
-    private DetectorResult detectorResult;
+    private TaskResult detectResult;
 
-    private SearchResult searchResult;
+    private TaskResult searchResult;
 
     private Integer totalCostTime;
 
@@ -28,8 +25,8 @@ public class BrandResult implements Parcelable {
         } else {
             traceId = in.readLong();
         }
-        detectorResult = in.readParcelable(DetectorResult.class.getClassLoader());
-        searchResult = in.readParcelable(SearchResult.class.getClassLoader());
+        detectResult = in.readParcelable(TaskResult.class.getClassLoader());
+        searchResult = in.readParcelable(TaskResult.class.getClassLoader());
         if (in.readByte() == 0) {
             totalCostTime = null;
         } else {
@@ -59,15 +56,15 @@ public class BrandResult implements Parcelable {
         this.traceId = traceId;
     }
 
-    public DetectorResult getDetectorResult() {
-        return detectorResult;
+    public TaskResult getDetectResult() {
+        return detectResult;
     }
 
-    public void setDetectorResult(DetectorResult detectorResult) {
-        this.detectorResult = detectorResult;
+    public void setDetectResult(TaskResult detectResult) {
+        this.detectResult = detectResult;
     }
 
-    public SearchResult getSearchResult() {
+    public TaskResult getSearchResult() {
         return searchResult;
     }
 
@@ -79,7 +76,7 @@ public class BrandResult implements Parcelable {
         this.createTime = createTime;
     }
 
-    public void setSearchResult(SearchResult searchResult) {
+    public void setSearchResult(TaskResult searchResult) {
         this.searchResult = searchResult;
     }
 
@@ -115,7 +112,7 @@ public class BrandResult implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeLong(traceId);
         }
-        parcel.writeParcelable(detectorResult, i);
+        parcel.writeParcelable(detectResult, i);
         parcel.writeParcelable(searchResult, i);
         if (totalCostTime == null) {
             parcel.writeByte((byte) 0);
@@ -132,7 +129,7 @@ public class BrandResult implements Parcelable {
     public String toString() {
         return "BrandResult{" +
                 "traceId=" + traceId +
-                ", detectorResult=" + detectorResult +
+                ", detectorResult=" + detectResult +
                 ", searchResult=" + searchResult +
                 ", totalCostTime=" + totalCostTime +
                 ", remark='" + remark + '\'' +

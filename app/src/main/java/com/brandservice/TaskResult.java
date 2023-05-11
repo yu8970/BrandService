@@ -4,27 +4,21 @@ import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-public class DetectorResult implements Parcelable {
+public class TaskResult implements Parcelable {
 
     private Boolean hasResult;
     private Bitmap  detectedImage;
-
     private Integer costTime;
-
     private String createTime;
-
-    private List<DetectionTarget> targets = new ArrayList<>();
-
+    private List<TaskTarget> targets = new ArrayList<>();
     private String remark;
-    public DetectorResult(){}
 
-    protected DetectorResult(Parcel in) {
+    public TaskResult(){}
+
+    protected TaskResult(Parcel in) {
         byte tmpHasResult = in.readByte();
         hasResult = tmpHasResult == 0 ? null : tmpHasResult == 1;
         detectedImage = in.readParcelable(Bitmap.class.getClassLoader());
@@ -34,7 +28,7 @@ public class DetectorResult implements Parcelable {
             costTime = in.readInt();
         }
         createTime = in.readString();
-        targets = in.createTypedArrayList(DetectionTarget.CREATOR);
+        targets = in.createTypedArrayList(TaskTarget.CREATOR);
         remark = in.readString();
     }
 
@@ -58,15 +52,15 @@ public class DetectorResult implements Parcelable {
         return 0;
     }
 
-    public static final Creator<DetectorResult> CREATOR = new Creator<DetectorResult>() {
+    public static final Creator<TaskResult> CREATOR = new Creator<TaskResult>() {
         @Override
-        public DetectorResult createFromParcel(Parcel in) {
-            return new DetectorResult(in);
+        public TaskResult createFromParcel(Parcel in) {
+            return new TaskResult(in);
         }
 
         @Override
-        public DetectorResult[] newArray(int size) {
-            return new DetectorResult[size];
+        public TaskResult[] newArray(int size) {
+            return new TaskResult[size];
         }
     };
 
@@ -86,11 +80,11 @@ public class DetectorResult implements Parcelable {
         this.detectedImage = detectedImage;
     }
 
-    public List<DetectionTarget> getTargets() {
+    public List<TaskTarget> getTargets() {
         return targets;
     }
 
-    public void setTargets(List<DetectionTarget> targets) {
+    public void setTargets(List<TaskTarget> targets) {
         this.targets = targets;
     }
 

@@ -1,9 +1,8 @@
 package com.brandservice;
 
 import com.brandservice.BrandResult;
-import com.brandservice.DetectorResult;
-import com.brandservice.SearchResult;
-import com.brandservice.DetectionTarget;
+import com.brandservice.TaskResult;
+import com.brandservice.TaskTarget;
 
 interface IBrandServiceAIDL {
 

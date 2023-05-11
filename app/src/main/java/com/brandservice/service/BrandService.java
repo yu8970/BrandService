@@ -14,23 +14,23 @@ import androidx.annotation.Nullable;
 
 import com.brandservice.IBrandServiceAIDL;
 import com.brandservice.BrandResult;
-import com.brandservice.DetectorResult;
-import com.brandservice.SearchResult;
+import com.brandservice.TaskResult;
 import com.brandservice.utils.DetectorUtil;
 import com.brandservice.utils.SnowFlakeUtil;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import kotlin.io.ByteStreamsKt;
 
 public class BrandService extends Service {
     private static final String TAG = "BrandService";
+
+    private static final SnowFlakeUtil worker = new SnowFlakeUtil(1,1,1);
 
     private DetectorUtil detectorUtil;
 
@@ -47,22 +47,28 @@ public class BrandService extends Service {
             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 
             BrandResult brandResult = new BrandResult();
-            SnowFlakeUtil worker = new SnowFlakeUtil(1,1,1);
+
             brandResult.setTraceId(worker.nextId());
             Date date = new Date();
             @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
             brandResult.setCreateTime(dateFormat.format(date));
 
             /** detection **/
-            DetectorResult detectorResult = detectorUtil.startDetection(bitmap);
-            brandResult.setDetectorResult(detectorResult);
+            TaskResult detectorResult = detectorUtil.startDetection(bitmap);
+            brandResult.setDetectResult(detectorResult);
             /** detection **/
 
             /** search **/
-            SearchResult searchResult = new SearchResult();
+            TaskResult searchResult = new TaskResult();
             // TODO
             brandResult.setSearchResult(searchResult);
             /** search **/
+
+            try{
+                fis.close();
+            }catch (IOException e){
+
+            }
 
 
             Long end = System.currentTimeMillis();

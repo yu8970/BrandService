@@ -11,9 +11,8 @@ import android.util.Log;
 
 import com.blankj.utilcode.util.PathUtils;
 import com.blankj.utilcode.util.ResourceUtils;
-import com.brandservice.DetectionTarget;
-import com.brandservice.DetectorResult;
-import com.brandservice.service.BrandService;
+import com.brandservice.TaskTarget;
+import com.brandservice.TaskResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -64,9 +63,9 @@ public class DetectorUtil {
     }
 
 
-    public DetectorResult startDetection(Bitmap srcImg){
+    public TaskResult startDetection(Bitmap srcImg){
         // 封装结果
-        DetectorResult detectorResult = new DetectorResult();
+        TaskResult detectorResult = new TaskResult();
 
         // 请求时间
         Date date = new Date();
@@ -104,13 +103,13 @@ public class DetectorUtil {
     }
 
 
-    private List<DetectionTarget> resToTarget(Bitmap noCutBitmap, List<Detector.Result> results){
-        List<DetectionTarget> targets = new ArrayList<>();
+    private List<TaskTarget> resToTarget(Bitmap noCutBitmap, List<Detector.Result> results){
+        List<TaskTarget> targets = new ArrayList<>();
         for(Detector.Result result: results){
-            DetectionTarget target = new DetectionTarget();
+            TaskTarget target = new TaskTarget();
             // TODO 商标注册ID，暂时无数据，默认10001
-            target.setBrandId("10001");
-            target.setBrandName(MultiBoxTracker.CLASSNAME[result.getLabel_id()]);
+            target.setId("10001");
+            target.setName(MultiBoxTracker.CLASSNAME[result.getLabel_id()]);
             target.setScore(result.getScore());
             Rect box = result.getBbox();
             target.setImage(Bitmap.createBitmap(noCutBitmap, (int) box.left, (int) box.top, (int) (box.right-box.left), (int) (box.bottom-box.top), null, false));

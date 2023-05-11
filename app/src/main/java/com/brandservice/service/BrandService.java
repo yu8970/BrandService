@@ -16,6 +16,7 @@ import com.brandservice.IBrandServiceAIDL;
 import com.brandservice.BrandResult;
 import com.brandservice.TaskResult;
 import com.brandservice.utils.DetectorUtil;
+import com.brandservice.utils.SearchUtil;
 import com.brandservice.utils.SnowFlakeUtil;
 
 import java.io.FileDescriptor;
@@ -59,7 +60,9 @@ public class BrandService extends Service {
             /** detection **/
 
             /** search **/
-            TaskResult searchResult = new TaskResult();
+            int k = 4;
+            SearchUtil.am = getResources().getAssets();
+            TaskResult searchResult = SearchUtil.search(bitmap,k);;
             // TODO
             brandResult.setSearchResult(searchResult);
             /** search **/

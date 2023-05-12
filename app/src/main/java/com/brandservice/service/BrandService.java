@@ -82,7 +82,7 @@ public class BrandService extends Service {
 
             Long end = System.currentTimeMillis();
             brandResult.setTotalCostTime((int) (end-start));
-            Log.d(TAG, "[sendImageAndGetResult]: "+brandResult.toString());
+            Log.d("[BrandService]", brandResult.toString());
             return brandResult;
         }
     };
@@ -91,7 +91,6 @@ public class BrandService extends Service {
     public void onCreate() {
         super.onCreate();
         detectorUtil = new DetectorUtil(getResources().getAssets(), BrandService.this);
-        Log.e(TAG, "[onCreate]");
     }
 
     @Nullable

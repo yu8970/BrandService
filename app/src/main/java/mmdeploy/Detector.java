@@ -8,10 +8,7 @@ public class Detector {
 
     static {
         // libmmdeploy_java.so
-        Long start = System.currentTimeMillis();
         System.loadLibrary("mmdeploy_java");
-        Long end = System.currentTimeMillis();
-        Log.e(TAG, "[loadLibrary] loadLibrary cost time:"+(end-start)+"ms");
     }
 
     public static class Result {
@@ -80,10 +77,7 @@ public class Detector {
     public Result[] apply(Mat image) {
         int[] counts = new int[1];
         Mat[] images = new Mat[]{image};
-        Long start = System.currentTimeMillis();
         Result[] results = apply(handle, images, counts);
-        Long end = System.currentTimeMillis();
-        Log.e(TAG, "[apply] cost time:"+(end-start)+"ms");
         return results;
     }
 

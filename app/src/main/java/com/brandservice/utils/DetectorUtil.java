@@ -119,8 +119,7 @@ public class DetectorUtil {
     }
 
     public List<Detector.Result> getDetectionResult(Bitmap srcBitmap){
-        Log.d(TAG, "[getDetectionResult]");
-        long start = System.currentTimeMillis();
+
         // 最长边为640，否则报错，必须先缩放
         int tempEdge = Math.max(srcBitmap.getWidth(), srcBitmap.getHeight());
         if(tempEdge != 640) {
@@ -140,9 +139,6 @@ public class DetectorUtil {
         Detector.Result[] result = detector.apply(rgb);
         // 结果处理
         List<Detector.Result> filteredResult = filterResult(result, 0.4f, true);
-
-        long end = System.currentTimeMillis();
-        Log.d(TAG,"[detect cost time]: "+(end-start)+" ms");
 
         return filteredResult;
     }

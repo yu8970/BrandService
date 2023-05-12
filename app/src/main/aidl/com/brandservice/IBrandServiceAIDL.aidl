@@ -8,4 +8,6 @@ interface IBrandServiceAIDL {
 
     BrandResult getBrandResult(in ParcelFileDescriptor pfd);
 
+    BrandResult getBrandResultWithBitmap(in Bitmap bitmap);
+
 }

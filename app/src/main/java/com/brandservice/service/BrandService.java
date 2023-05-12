@@ -40,15 +40,27 @@ public class BrandService extends Service {
         @Override
         public BrandResult getBrandResult(ParcelFileDescriptor pfd) throws RemoteException {
             Log.d(TAG, "[sendImageAndGetResult]");
-            Long start = System.currentTimeMillis();
-
             FileDescriptor fileDescriptor = pfd.getFileDescriptor();
             FileInputStream fis = new FileInputStream(fileDescriptor);
             byte[] data = ByteStreamsKt.readBytes((InputStream)fis);
             Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+            BrandResult result = getResult(bitmap);
+            try{
+                fis.close();
+            }catch (IOException e){
 
+            }
+            return result;
+        }
+
+        @Override
+        public BrandResult getBrandResultWithBitmap(Bitmap bitmap) throws RemoteException {
+            return getResult(bitmap);
+        }
+
+        private BrandResult getResult(Bitmap bitmap){
+            Long start = System.currentTimeMillis();
             BrandResult brandResult = new BrandResult();
-
             brandResult.setTraceId(worker.nextId());
             Date date = new Date();
             @SuppressLint("SimpleDateFormat") SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
@@ -66,12 +78,6 @@ public class BrandService extends Service {
             // TODO
             brandResult.setSearchResult(searchResult);
             /** search **/
-
-            try{
-                fis.close();
-            }catch (IOException e){
-
-            }
 
 
             Long end = System.currentTimeMillis();
